@@ -72,7 +72,7 @@ public class LevelSystem : MonoBehaviour
         {
             timeToSpawn -= Time.deltaTime;
         }
-        else if(!isFirstDrop || numberOfInjured <=  9)
+        else if(!isFirstDrop || numberOfInjured <=  8)
         {
             Instantiate(InjuredBringer, spawnLocations[0], Quaternion.identity);
             timeToSpawn = Random.Range(minTime,maxTime);
