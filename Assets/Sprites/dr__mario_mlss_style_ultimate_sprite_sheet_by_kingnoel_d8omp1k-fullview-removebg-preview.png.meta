@@ -1,0 +1,644 @@
+fileFormatVersion: 2
+guid: c18ef6b34c8a5344cbbc9472b22e1ad9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6900254765715215793
+    second: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_0
+  - first:
+      213: -7179529771903168711
+    second: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_1
+  - first:
+      213: 533076461853308526
+    second: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_2
+  - first:
+      213: 8124776380153516507
+    second: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_3
+  - first:
+      213: 7993124222249004672
+    second: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_4
+  - first:
+      213: -1639323350581558380
+    second: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_5
+  - first:
+      213: -7933968233515587065
+    second: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_6
+  - first:
+      213: 1478906207054602927
+    second: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_7
+  - first:
+      213: 6069432863581452431
+    second: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_8
+  - first:
+      213: -7741806682282940803
+    second: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_9
+  - first:
+      213: 3587343796876919066
+    second: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_10
+  - first:
+      213: -4075337922281709037
+    second: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_11
+  - first:
+      213: -7232202692172851511
+    second: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_12
+  - first:
+      213: -3042754913925268059
+    second: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_13
+  - first:
+      213: -2542143614931649427
+    second: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_14
+  - first:
+      213: -2197449509338267157
+    second: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_15
+  - first:
+      213: -8181006103676380296
+    second: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_16
+  - first:
+      213: 7692650174233354209
+    second: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_17
+  - first:
+      213: -7778338853079468738
+    second: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_18
+  - first:
+      213: 1690277898502033444
+    second: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_19
+  - first:
+      213: 6488126013963108127
+    second: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_20
+  - first:
+      213: -2570307308881609871
+    second: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_21
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 75
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_0
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 442
+        width: 18
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b5d62a7621a2cf50800000000000000
+      internalID: 6900254765715215793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_1
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 414
+        width: 14
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93fce5316bf2d5c90800000000000000
+      internalID: -7179529771903168711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_2
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 414
+        width: 18
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6673eab73ed56700800000000000000
+      internalID: 533076461853308526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_3
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 414
+        width: 15
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd1d882221101c070800000000000000
+      internalID: 8124776380153516507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_4
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 414
+        width: 16
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08ee8b871284dee60800000000000000
+      internalID: 7993124222249004672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_5
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 414
+        width: 19
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49345902914ff39e0800000000000000
+      internalID: -1639323350581558380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_6
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 414
+        width: 19
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70ae1167de1e4e190800000000000000
+      internalID: -7933968233515587065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_7
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 414
+        width: 17
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa22c971c51268410800000000000000
+      internalID: 1478906207054602927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_8
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 120
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f88badd3805fa3450800000000000000
+      internalID: 6069432863581452431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_9
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 94
+        width: 14
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d76a7ce17d39f8490800000000000000
+      internalID: -7741806682282940803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_10
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 94
+        width: 19
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a11cc0c3d2ec8c130800000000000000
+      internalID: 3587343796876919066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_11
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 94
+        width: 37
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31268b270cd7177c0800000000000000
+      internalID: -4075337922281709037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_12
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 119
+        width: 17
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c6d96528fd02ab90800000000000000
+      internalID: -7232202692172851511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 66
+        width: 15
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5adf8e8e686f5c5d0800000000000000
+      internalID: -3042754913925268059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_14
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 66
+        width: 16
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6cb8ffd9dd78bcd0800000000000000
+      internalID: -2542143614931649427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_15
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 66
+        width: 14
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be1490850571181e0800000000000000
+      internalID: -2197449509338267157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_16
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 65
+        width: 16
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87b11152b4a377e80800000000000000
+      internalID: -8181006103676380296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_17
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 13
+        width: 15
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ef96887398c1ca60800000000000000
+      internalID: 7692650174233354209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_18
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 12
+        width: 20
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e353497460acd0490800000000000000
+      internalID: -7778338853079468738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_19
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 38
+        width: 13
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42058ef0bc2157710800000000000000
+      internalID: 1690277898502033444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_20
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 36
+        width: 18
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1ffd30fb347a0a50800000000000000
+      internalID: 6488126013963108127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dr__mario_mlss_style_ultimate_sprite_sheet_by_kingnoel_d8omp1k-fullview-removebg-preview_21
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 12
+        width: 21
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17b7582ee1f645cd0800000000000000
+      internalID: -2570307308881609871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
