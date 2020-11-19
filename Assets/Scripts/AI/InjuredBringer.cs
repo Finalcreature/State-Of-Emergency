@@ -18,7 +18,6 @@ public class InjuredBringer : MonoBehaviour
        reached = false;
        startPos = transform.position.x;
        xDrop = Random.Range(-9,10);
-       
     }
 
     // Update is called once per frame
