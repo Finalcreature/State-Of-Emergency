@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Soldier : MonoBehaviour
+public class Soldier : MonoBehaviour //Should have named it Injured
 {
     //References
     Player player;
@@ -12,8 +12,8 @@ public class Soldier : MonoBehaviour
     //Injuries
     [SerializeField] Sprite[] injuries; //Sprites of injuries
     Sprite currentInjury;
-    Color[] conditionsStatus;
-    [SerializeField] Sprite deadSoldier;
+    Color[] conditionsStatus; // Has the condition (black) : else (white)
+    [SerializeField] Sprite deadSoldier; //Sprite when the soldier dies
     float health;
     bool isAlive;
     bool isTreated;
@@ -29,10 +29,15 @@ public class Soldier : MonoBehaviour
     
     void Start()
     {
+        //Default conditions
         isAlive = true;
         health = 100;
+
+        //Get references to scripts
         player = FindObjectOfType<Player>();
         levelSystem = FindObjectOfType<LevelSystem>();
+
+        //Set conditions and designated ambulance - TODO check OneNote
         SetInjury();
         SetRescueTeam();
 
@@ -56,8 +61,8 @@ public class Soldier : MonoBehaviour
     public void SetSoldierAsDead()
     {
         isAlive = false;
-        Destroy(transform.GetChild(0).gameObject);
-        GetComponent<Animator>().enabled = false;
+        Destroy(transform.GetChild(0).gameObject); // Remove the conditions panel
+        GetComponent<Animator>().enabled = false; //No death animation
         GetComponent<SpriteRenderer>().sprite = deadSoldier;
         levelSystem.DecreaseAmountOfInjured();
     }

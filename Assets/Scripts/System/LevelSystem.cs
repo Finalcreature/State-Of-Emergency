@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 public class LevelSystem : MonoBehaviour
 {
-    [Header("Timer")]
-    [SerializeField] TextMeshProUGUI timer;
-    [SerializeField] float setTime;
-
     [Header("Objective")]
     [SerializeField] TextMeshProUGUI obejctive;
     [SerializeField] int evacuations;
@@ -47,27 +44,43 @@ public class LevelSystem : MonoBehaviour
     int numberOfInjured;
     Soldier[] soldiers;
     
+    //Delegations
+    TimerLogic timerLogic;
+
+    //Events
+    public delegate void OnGamePauseArgs();
+    public event OnGamePauseArgs OnGamePause;
      
     void Start()
     {
+        // Get references
         player = FindObjectOfType<Player>();
         levelLoader = FindObjectOfType<LevelLoader>();
-        isFirstDrop = false;
+        timerLogic = FindObjectOfType<TimerLogic>();
+
+        // Set default settings
         isGameStopped = false;
         evacuated = 0;
         obejctive.text = "Evacuated: " + evacuated + "/" + evacuations;
         stopButton.onClick.AddListener(this.ShowMenu);
+
+        //Set InjuredBringer
+        isFirstDrop = false;
         minTime = 8;
         maxTime = 20;
-        timeToSpawn = Random.Range(minTime,maxTime);
-        spawnLocations = new Vector2[] {new Vector2(11,Random.Range(-6,6))};
-        Mathf.Round(spawnLocations[0].y);
-        numberOfInjured =  0; 
+        timeToSpawn = UnityEngine.Random.Range(minTime,maxTime); /* How often when the InjuredBringer will bring new casulties 
+                                                                    (Needed UnityEngine.Random to prevent conflict between it and the System.Random)*/
+        spawnLocations = new Vector2[] {new Vector2(11,UnityEngine.Random.Range(-6,6))};
+        Mathf.Round(spawnLocations[0].y); //Make sure the injured is dropped in a whole number position to keep logical distances from one injured to the next
+        numberOfInjured =  0;
+
+        //Subscribtions
+        timerLogic.OnEndTime += EndGame; 
     }
 
     void Update()
     {
-        if(isGameStopped) {return;};
+        if(isGameStopped) {OnGamePause?.Invoke();}
         if(timeToSpawn >=0)
         {
             timeToSpawn -= Time.deltaTime;
@@ -75,8 +88,8 @@ public class LevelSystem : MonoBehaviour
         else if(!isFirstDrop || numberOfInjured <=  8)
         {
             Instantiate(InjuredBringer, spawnLocations[0], Quaternion.identity);
-            timeToSpawn = Random.Range(minTime,maxTime);
-            spawnLocations[0] = new Vector2(11,Random.Range(-6,6));
+            timeToSpawn = UnityEngine.Random.Range(minTime,maxTime);
+            spawnLocations[0] = new Vector2(11,UnityEngine.Random.Range(-6,6));
             soldiers = FindObjectsOfType<Soldier>();
             numberOfInjured = 0;
             foreach (Soldier soldier in soldiers)
@@ -86,20 +99,8 @@ public class LevelSystem : MonoBehaviour
                   numberOfInjured++;
                 }
             }
-            Debug.Log(numberOfInjured);
             isFirstDrop = true;
-        }
-
-        if(setTime >= 0)
-        {
-            setTime -= Time.deltaTime;
-            timer.text = setTime.ToString("F0");
-        }
-        else if(!isGameStopped)
-        {
-            EndGame();
-        }
-        
+        }      
     }
 
     public void DecreaseAmountOfInjured()
@@ -107,7 +108,7 @@ public class LevelSystem : MonoBehaviour
         numberOfInjured--;
     }
 
-    private void EndGame()
+    private void EndGame(object sender, EventArgs e)
     {
         isGameStopped = true;
         screenStates.SetActive(true);
@@ -153,6 +154,7 @@ public class LevelSystem : MonoBehaviour
             resume.onClick.AddListener(this.ShowMenu);
             SetQuitButton(pQuit);
             isGameStopped = true;
+            
         }
         else
         {

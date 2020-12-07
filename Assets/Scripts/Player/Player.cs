@@ -5,8 +5,10 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 //PlayerMovement
-float mouseLocationX, mouseLocationY;
-bool move;
+bool isMoving; 
+
+//Player Animation
+Animator playerAnim;
 
 //Refernces
 LevelSystem levelSystem;
@@ -20,61 +22,72 @@ float camStartZoom, zoomTarget;
 
 	void Start()
     {
+        //Get references to scripts
         levelSystem = FindObjectOfType<LevelSystem>();
-         SetCamera();
-         SetPlayer();
+        playerAnim = GetComponent<Animator>();
+
+        //Set camera and player movement condition
+        isMoving = false;
+        SetCamera(); 
+        
     }
 
-    private void SetPlayer()
-    {
-        mouseLocationX = Input.mousePosition.x;
-        mouseLocationY = Input.mousePosition.y;
-        move = false;
-    }
-
+    //Set all camera related variables
     private void SetCamera()
     {
         gameCam = Camera.main;
         camStartPos = gameCam.transform.position;
         camStartZoom = gameCam.orthographicSize;
-        zoomTarget = 1.35f;
+        zoomTarget = 1.35f; //Camera orthographic size when zoomed in
     }
 
-    Vector2 SetMousePosition()
-	    {
-	        Vector2 clickPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-	        Vector2 worldPos = gameCam.ScreenToWorldPoint(clickPos);
-	        return worldPos;
-        }
+
 
     public void MovePlayer(Vector3 soliderPos)
     {
         levelSystem.ActivateChoices(false);
-        move = true;
-        if(move)
+        isMoving = true;
+        if(isMoving)
         {
            StartCoroutine(Moving(soliderPos));
         }
         else
         {      
-            move = false;
-        }
-            
+            isMoving = false;
+        }      
     }
 
     IEnumerator Moving(Vector3 soliderPosition)
     {
-        while(move)
-        {    
-            yield return move;
-            transform.position = Vector3.MoveTowards(transform.position,soliderPosition,Time.deltaTime);
-          
-            if(transform.position.x == soliderPosition.x && transform.position.y == soliderPosition.y)
+        while (isMoving)
+        {
+            yield return isMoving;
+            transform.position = Vector3.MoveTowards(transform.position, soliderPosition, Time.deltaTime);
+
+            if (soliderPosition.y >= transform.position.y)
+            {
+                playerAnim.SetTrigger("goUp");
+            }
+            else
+            {
+                playerAnim.SetTrigger("goDown");
+            }
+
+            if (transform.position.x == soliderPosition.x && transform.position.y == soliderPosition.y)
             {
                 TreatingPhase();
+
             }
 
         }
+        ResetAnims();
+    }
+
+    private void ResetAnims()
+    {
+        playerAnim.ResetTrigger("goUp");
+        playerAnim.ResetTrigger("goDown");
+        playerAnim.SetTrigger("stand");
     }
 
     void TreatingPhase()
@@ -83,14 +96,14 @@ float camStartZoom, zoomTarget;
         attending = FindObjectOfType<Attending>();
         attending.SetTreating(true);
         StartCoroutine(ZoomIn());
-        move = false;
-        }
+        isMoving = false;
+    }
 
     IEnumerator ZoomIn()
     {
         while(attending.isTreating()) 
         {
-            yield return  Camera.main.orthographicSize > zoomTarget;
+            yield return  null;
             gameCam.orthographicSize = Mathf.Lerp(gameCam.orthographicSize, zoomTarget, Time.deltaTime * 2); 
                 gameCam.transform.position = Vector3.Lerp
                 (
@@ -98,13 +111,13 @@ float camStartZoom, zoomTarget;
                     new Vector3(transform.position.x, transform.position.y, -10),
                     Time.deltaTime * 2
                 ); 
-                levelSystem.GetButton(3).gameObject.SetActive(false);
+                levelSystem.GetButton(3).gameObject.SetActive(false); // Set the stop button to false - prevent player from pausing the game during treating phase;
         }
     }
 
     public bool IsMoving()
     {
-        return move;
+        return isMoving;
     }
 
     public void ZoomOut()
@@ -119,7 +132,7 @@ float camStartZoom, zoomTarget;
             yield return  Camera.main.orthographicSize < camStartZoom;
             gameCam.orthographicSize = Mathf.Lerp(gameCam.orthographicSize, camStartZoom, Time.deltaTime * 2); 
             gameCam.transform.position = Vector3.Lerp(gameCam.transform.position, camStartPos, Time.deltaTime * 2);
-            levelSystem.GetButton(3).gameObject.SetActive(true);
+            levelSystem.GetButton(3).gameObject.SetActive(true); // Set the stop button to true - player can pause now if desire
         }
     }  
 

@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -2542143614931649427, guid: c18ef6b34c8a5344cbbc9472b22e1ad9,
+  m_Sprite: {fileID: -2197449509338267157, guid: c18ef6b34c8a5344cbbc9472b22e1ad9,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -96,3 +96,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   squad: {fileID: 1764021435551325018, guid: 8ecf7404614981048bf3756d90bc28d0, type: 3}
+  pickupPose: {fileID: -2570307308881609871, guid: c18ef6b34c8a5344cbbc9472b22e1ad9,
+    type: 3}

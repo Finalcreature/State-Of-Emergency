@@ -9,11 +9,11 @@ public class AIMedic : MonoBehaviour
     LevelSystem levelSystem;
     [SerializeField] GameObject squad;
     GameObject currentSquad;
+    [SerializeField] Sprite pickupPose;
    
     
     private void Start()
     {
-        
         levelSystem = FindObjectOfType<LevelSystem>();
         
         if(levelSystem.GetAllMedics().Length  % 2 != 0)
@@ -50,7 +50,6 @@ public class AIMedic : MonoBehaviour
                     {
                         if(currentSquad.transform.GetChild(0).transform.position.y == currentSquad.transform.GetChild(1).transform.position.y )
                         {
-                        // yield return new WaitUntil(() => currentSquad.transform.GetChild(0).transform.position.y == currentSquad.transform.GetChild(1).transform.position.y);
                             moving = false;
                             soldier.Reached(currentSquad);
                         }
@@ -72,13 +71,15 @@ public class AIMedic : MonoBehaviour
             {  
                 foreach(Transform medic in currentSquad.transform)
                 {
+                    medic.GetComponent<SpriteRenderer>().sprite = pickupPose;
                     if(medic.name == "Medic 0")
                     {
-                        medic.transform.position = Vector3.MoveTowards(medic.transform.position, thisSoldier.AmbulancePos() ,Time.deltaTime * 1.5f);
+                        medic.GetComponent<SpriteRenderer>().flipX = true;
+                        medic.transform.position = thisSoldier.transform.position + offset;
                     }
                     else
                     {
-                        medic.transform.position = Vector3.MoveTowards(medic.transform.position, thisSoldier.AmbulancePos() ,Time.deltaTime); 
+                        medic.transform.position = thisSoldier.transform.position - offset; 
                     }
                 }
                 thisSoldier.transform.position = Vector3.MoveTowards(thisSoldier.transform.position, thisSoldier.AmbulancePos(), Time.deltaTime);
