@@ -14,7 +14,7 @@ public class Soldier : MonoBehaviour //Should have named it Injured
     Sprite currentInjury;
     Color[] conditionsStatus; // Has the condition (black) : else (white)
     [SerializeField] Sprite deadSoldier; //Sprite when the soldier dies
-    float health;
+    float health, currentHealth;
     bool isAlive;
     bool isTreated;
     
@@ -37,6 +37,9 @@ public class Soldier : MonoBehaviour //Should have named it Injured
         player = FindObjectOfType<Player>();
         levelSystem = FindObjectOfType<LevelSystem>();
 
+        //Set amount of soldiers
+        levelSystem.SetAmountOfInjured(isAlive);
+
         //Set conditions and designated ambulance - TODO check OneNote
         SetInjury();
         SetRescueTeam();
@@ -45,8 +48,7 @@ public class Soldier : MonoBehaviour //Should have named it Injured
 
     void Update()
     {
-        if(!levelSystem.GamePaused())
-        {
+            currentHealth = health;
             if(health > 0 && !isTreated)
             {
                 health -= Time.deltaTime;
@@ -55,7 +57,11 @@ public class Soldier : MonoBehaviour //Should have named it Injured
             {
                 SetSoldierAsDead();
             }
-        }
+    }
+
+    void StopHealth()
+    {
+        health = currentHealth;
     }
 
     public void SetSoldierAsDead()
@@ -64,7 +70,7 @@ public class Soldier : MonoBehaviour //Should have named it Injured
         Destroy(transform.GetChild(0).gameObject); // Remove the conditions panel
         GetComponent<Animator>().enabled = false; //No death animation
         GetComponent<SpriteRenderer>().sprite = deadSoldier;
-        levelSystem.DecreaseAmountOfInjured();
+        levelSystem.SetAmountOfInjured(isAlive);
     }
 
     private void SetRescueTeam()
@@ -77,7 +83,7 @@ public class Soldier : MonoBehaviour //Should have named it Injured
     private void OnMouseDown()
     {
         {
-            if(!player.IsMoving() && isAlive && !levelSystem.GamePaused())
+            if(!player.IsMoving() && isAlive && Time.timeScale != 0)
             {
                 player.MovePlayer(transform.position);
             }
@@ -154,7 +160,7 @@ public class Soldier : MonoBehaviour //Should have named it Injured
     public void Evacuate()
     {
         isTreated = true;
-        levelSystem.DecreaseAmountOfInjured();
+        levelSystem.SetAmountOfInjured(!isAlive);
         GameObject thisAmbulance =  Instantiate(ambulance, ambulanceSpawnLocation, Quaternion.identity) as GameObject;
         levelSystem.AddAmbulance(thisAmbulance);
         currentAmbulance = levelSystem.GetAmbulances()[levelSystem.GetAmbulances().LastIndexOf(thisAmbulance)];

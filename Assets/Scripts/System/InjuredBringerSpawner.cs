@@ -4,20 +4,17 @@ using UnityEngine;
 
 public class InjuredBringerSpawner : MonoBehaviour
 {
-    LevelSystem levelSystem;
     [SerializeField] InjuredBringer InjuredBringer;
     [SerializeField] float timeToSpawn, minTime, maxTime; //TODO set numbers per difficulty
     Vector2[] spawnLocations;
     bool isFirstDrop; 
     int numberOfInjured;
-    bool gamePaused;
+    
+    float pausedTime;
     // Start is called before the first frame update
     void Start()
-    {
-        gamePaused = false;
-        levelSystem = FindObjectOfType<LevelSystem>();
-        levelSystem.OnGamePause += StopSpawning;
-        isFirstDrop = false;
+    {  
+
         minTime = 8;
         maxTime = 20;
         timeToSpawn = UnityEngine.Random.Range(minTime,maxTime); /* How often when the InjuredBringer will bring new casulties 
@@ -30,18 +27,24 @@ public class InjuredBringerSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!gamePaused)
+        
+        if(timeToSpawn >=0)
+         {
+            timeToSpawn -= Time.deltaTime;
+         }
+            
+        else if(numberOfInjured <=  8)
         {
-            Debug.Log("Not paused");
-        }
-        else
-        {
-            Debug.Log("Paused");
-        }
+            Instantiate(InjuredBringer, spawnLocations[0], Quaternion.identity);
+            timeToSpawn = UnityEngine.Random.Range(minTime,maxTime);
+            spawnLocations[0] = new Vector2(11,UnityEngine.Random.Range(-6,6));
+            pausedTime = timeToSpawn;
+        }      
+        
     }
 
     void StopSpawning()
     {
-        gamePaused = !gamePaused; //flip paused conditions
+       timeToSpawn = pausedTime;
     }
 }

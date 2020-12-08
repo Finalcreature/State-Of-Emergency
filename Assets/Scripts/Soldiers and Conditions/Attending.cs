@@ -24,7 +24,6 @@ public class Attending : MonoBehaviour
     }
     public void Analyze()
     {
-        if(levelSystem.GamePaused()) {return;}
         Soldier[] soldiers = FindObjectsOfType<Soldier>();
         foreach (Soldier soldier in soldiers)
         {

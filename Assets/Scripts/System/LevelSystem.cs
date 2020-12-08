@@ -12,7 +12,6 @@ public class LevelSystem : MonoBehaviour
     int evacuated;
 
     [Header("System")]
-    bool isGameStopped;
     LevelLoader levelLoader;
     Player player;
     AIMedic[] medicsOnField;
@@ -40,17 +39,12 @@ public class LevelSystem : MonoBehaviour
     [SerializeField] InjuredBringer InjuredBringer;
     [SerializeField] float timeToSpawn, minTime, maxTime;
     Vector2[] spawnLocations;
-    bool isFirstDrop; 
     int numberOfInjured;
     Soldier[] soldiers;
     
     //Delegations
     TimerLogic timerLogic;
 
-    //Events
-    public delegate void OnGamePauseArgs();
-    public event OnGamePauseArgs OnGamePause;
-     
     void Start()
     {
         // Get references
@@ -59,58 +53,29 @@ public class LevelSystem : MonoBehaviour
         timerLogic = FindObjectOfType<TimerLogic>();
 
         // Set default settings
-        isGameStopped = false;
         evacuated = 0;
         obejctive.text = "Evacuated: " + evacuated + "/" + evacuations;
         stopButton.onClick.AddListener(this.ShowMenu);
-
-        //Set InjuredBringer
-        isFirstDrop = false;
-        minTime = 8;
-        maxTime = 20;
-        timeToSpawn = UnityEngine.Random.Range(minTime,maxTime); /* How often when the InjuredBringer will bring new casulties 
-                                                                    (Needed UnityEngine.Random to prevent conflict between it and the System.Random)*/
-        spawnLocations = new Vector2[] {new Vector2(11,UnityEngine.Random.Range(-6,6))};
-        Mathf.Round(spawnLocations[0].y); //Make sure the injured is dropped in a whole number position to keep logical distances from one injured to the next
-        numberOfInjured =  0;
+        numberOfInjured = 0;
 
         //Subscribtions
         timerLogic.OnEndTime += EndGame; 
     }
 
-    void Update()
+    public void SetAmountOfInjured(bool isAlive)
     {
-        if(isGameStopped) {OnGamePause?.Invoke();}
-        if(timeToSpawn >=0)
+        if(isAlive)
         {
-            timeToSpawn -= Time.deltaTime;
+            numberOfInjured++;    
         }
-        else if(!isFirstDrop || numberOfInjured <=  8)
+        else
         {
-            Instantiate(InjuredBringer, spawnLocations[0], Quaternion.identity);
-            timeToSpawn = UnityEngine.Random.Range(minTime,maxTime);
-            spawnLocations[0] = new Vector2(11,UnityEngine.Random.Range(-6,6));
-            soldiers = FindObjectsOfType<Soldier>();
-            numberOfInjured = 0;
-            foreach (Soldier soldier in soldiers)
-            {
-                if(soldier.SoldierStatus())
-                {
-                  numberOfInjured++;
-                }
-            }
-            isFirstDrop = true;
-        }      
-    }
-
-    public void DecreaseAmountOfInjured()
-    {
-        numberOfInjured--;
+            numberOfInjured--;
+        }
     }
 
     private void EndGame(object sender, EventArgs e)
     {
-        isGameStopped = true;
         screenStates.SetActive(true);
         if (evacuated >= evacuations)
         {
@@ -153,7 +118,7 @@ public class LevelSystem : MonoBehaviour
             pauseMenu.SetActive(true);
             resume.onClick.AddListener(this.ShowMenu);
             SetQuitButton(pQuit);
-            isGameStopped = true;
+            Time.timeScale = 0;
             
         }
         else
@@ -161,7 +126,7 @@ public class LevelSystem : MonoBehaviour
             resume.onClick.RemoveAllListeners();
             RemoveQuitListener(pQuit);
             pauseMenu.SetActive(false);
-            isGameStopped = false;
+            Time.timeScale = 1;
         }
         
     }
@@ -173,7 +138,7 @@ public class LevelSystem : MonoBehaviour
 
     void SetQuitButton(Button quit)
     {
-        quit.onClick.AddListener(levelLoader.LoadMainMenu);
+        //quit.onClick.AddListener(levelLoader.LoadMainMenu); //TODO re-enable after debugging
     }
     void RemoveQuitListener(Button quit)
     {
@@ -218,10 +183,5 @@ public class LevelSystem : MonoBehaviour
     public List<GameObject> GetAmbulances()
     {
         return ambulances;
-    }
-
-    public bool GamePaused()
-    {
-        return isGameStopped;
     }
 }
