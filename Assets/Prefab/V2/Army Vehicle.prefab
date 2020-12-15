@@ -95,4 +95,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  soldier: {fileID: 5391946037146517299, guid: 0d4d55309f8678d48b95e009af3ea78d, type: 3}
+  soldier: {fileID: 5391946037146517299, guid: 64e04fa9c08e80845add3de72ae04561, type: 3}

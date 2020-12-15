@@ -10,6 +10,7 @@ public class AIMedic : MonoBehaviour
     [SerializeField] GameObject squad;
     GameObject currentSquad;
     [SerializeField] Sprite pickupPose;
+  
    
     
     private void Start()

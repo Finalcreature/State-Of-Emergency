@@ -5,15 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
-    private void Awake() {
-        LevelLoader[] levelLoaders = FindObjectsOfType<LevelLoader>();
-        foreach(LevelLoader ll in levelLoaders)
-        {
-            Debug.Log(ll.GetInstanceID());
-        }
+    private void Awake()
+    {
         if(FindObjectsOfType<LevelLoader>().Length > 1)
         {
-            Destroy(levelLoaders[1]);
+            Destroy(gameObject);
         }
         else
         {
@@ -42,7 +38,6 @@ public class LevelLoader : MonoBehaviour
      public void LoadLevel1()
      {
          SceneManager.LoadScene(1);
-        
      }
 
      public void LoadMainMenu()
@@ -53,6 +48,12 @@ public class LevelLoader : MonoBehaviour
      public string ActiveScene()
      {
          return SceneManager.GetActiveScene().name;
+     }
+
+    //No real level so it's just a pseudo-function
+     public void LoadNextLevel()
+     {
+         Debug.Log("Level 2 loaded");
      }
 
 

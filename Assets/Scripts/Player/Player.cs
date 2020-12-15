@@ -12,6 +12,7 @@ Animator playerAnim;
 
 //Refernces
 LevelSystem levelSystem;
+ButtonsHandler buttonsHandler;
 Attending attending;
 
 //Camera
@@ -25,6 +26,7 @@ float camStartZoom, zoomTarget;
         //Get references to scripts
         levelSystem = FindObjectOfType<LevelSystem>();
         playerAnim = GetComponent<Animator>();
+        buttonsHandler = FindObjectOfType<ButtonsHandler>();
 
         //Set camera and player movement condition
         isMoving = false;
@@ -111,7 +113,7 @@ float camStartZoom, zoomTarget;
                     new Vector3(transform.position.x, transform.position.y, -10),
                     Time.deltaTime * 2
                 ); 
-                levelSystem.GetButton(3).gameObject.SetActive(false); // Set the stop button to false - prevent player from pausing the game during treating phase;
+                buttonsHandler.GetTreatOrPause(false).gameObject.SetActive(false); // Set the stop button to false - prevent player from pausing the game during treating phase;
         }
     }
 
@@ -132,7 +134,7 @@ float camStartZoom, zoomTarget;
             yield return  Camera.main.orthographicSize < camStartZoom;
             gameCam.orthographicSize = Mathf.Lerp(gameCam.orthographicSize, camStartZoom, Time.deltaTime * 2); 
             gameCam.transform.position = Vector3.Lerp(gameCam.transform.position, camStartPos, Time.deltaTime * 2);
-            levelSystem.GetButton(3).gameObject.SetActive(true); // Set the stop button to true - player can pause now if desire
+            buttonsHandler.GetTreatOrPause(false).gameObject.SetActive(true); // Set the stop button to true - player can pause now if desire
         }
     }  
 

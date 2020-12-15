@@ -13,96 +13,67 @@ public class LevelSystem : MonoBehaviour
 
     [Header("System")]
     LevelLoader levelLoader;
-    Player player;
     AIMedic[] medicsOnField;
     List<GameObject> squads = new List<GameObject>();
     List<GameObject> ambulances = new List<GameObject>();
-    
-
-    [Header("Pause Menu")]
-    [SerializeField] GameObject pauseMenu;
-    [SerializeField] Button stopButton;
-    [SerializeField] Button resume;
-    [SerializeField] Button pQuit;
 
     [Header("End Game Screens")]
-    [SerializeField] GameObject screenStates;
-    [SerializeField] Button fRetry;
-    [SerializeField] Button fQuit;
+    [SerializeField] GameObject endScreen;
+    [SerializeField] Text endTitle;
+    [SerializeField] Text statistics;
+    [SerializeField] Button[] endScreenButtons; //{nextLevel, retry, quit}
 
     [Header("Choices")]
     [SerializeField] GameObject choices;
     [SerializeField] GameObject medicalKit;
-    [SerializeField] Button treat;
-
-    [Header("Level Manager")]
-    [SerializeField] InjuredBringer InjuredBringer;
-    [SerializeField] float timeToSpawn, minTime, maxTime;
-    Vector2[] spawnLocations;
-    int numberOfInjured;
-    Soldier[] soldiers;
-    
+       
     //Delegations
     TimerLogic timerLogic;
 
     void Start()
     {
         // Get references
-        player = FindObjectOfType<Player>();
         levelLoader = FindObjectOfType<LevelLoader>();
         timerLogic = FindObjectOfType<TimerLogic>();
 
         // Set default settings
+        Time.timeScale = 1;
         evacuated = 0;
         obejctive.text = "Evacuated: " + evacuated + "/" + evacuations;
-        stopButton.onClick.AddListener(this.ShowMenu);
-        numberOfInjured = 0;
 
+        //Set difficulty
+        if(DifficultyPrefs.difficulty == DifficultyPrefs.Difficulies.Easy)
+        {
+            Destroy(medicalKit.transform.GetChild(2).gameObject);
+            Destroy(medicalKit.transform.GetChild(3).gameObject);
+        }
+        
         //Subscribtions
         timerLogic.OnEndTime += EndGame; 
-    }
-
-    public void SetAmountOfInjured(bool isAlive)
-    {
-        if(isAlive)
-        {
-            numberOfInjured++;    
-        }
-        else
-        {
-            numberOfInjured--;
-        }
+        
     }
 
     private void EndGame(object sender, EventArgs e)
     {
-        screenStates.SetActive(true);
+        timerLogic.OnEndTime -= EndGame; 
+        
+        endScreen.SetActive(true);
+        statistics.text = "Evacuated " + evacuated + " out of " + evacuations + " injured";
+        endScreenButtons[2].onClick.AddListener(levelLoader.LoadMainMenu);
         if (evacuated >= evacuations)
         {
-            SuccessScreen();
+            endScreenButtons[1].gameObject.SetActive(false);
+            endScreenButtons[0].onClick.AddListener(levelLoader.LoadNextLevel);
+            Debug.Log(endScreenButtons[0].name);
+            endTitle.text = "Success";
+            endTitle.color = Color.green;
         }
         else
         {
-            FailScreen();
+            endScreenButtons[1].onClick.AddListener(levelLoader.LoadLevel1);
+            endTitle.text = "fail";
         }
-    }
-
-    private void FailScreen()
-    {
-        GameObject failScreen = screenStates.transform.GetChild(0).gameObject;
-        failScreen.SetActive(true);
-        Text failScreenText = failScreen.transform.GetChild(1).GetComponent<Text>();
-        failScreenText.text = "Evacuated only " + evacuated + " out of " + evacuations + " injured";
-        SetQuitButton(fQuit);
-        SetRetryButton(fRetry);
-    }
-
-    private void SuccessScreen()
-    {
-        GameObject successScreen = screenStates.transform.GetChild(1).gameObject;
-        successScreen.SetActive(true);
-        Text successScreenText = successScreen.transform.GetChild(1).GetComponent<Text>();
-        successScreenText.text = "Evacuated only " + evacuated + " out of " + evacuations + " injured";
+        Time.timeScale = 0;
     }
 
     public void SetEvacuatedAmount()
@@ -111,48 +82,9 @@ public class LevelSystem : MonoBehaviour
             obejctive.text = "Evacuated: " + evacuated + "/" + evacuations;
     }
 
-    public void ShowMenu() //TODO  stop AI
-    {
-        if(!pauseMenu.activeInHierarchy)
-        {
-            pauseMenu.SetActive(true);
-            resume.onClick.AddListener(this.ShowMenu);
-            SetQuitButton(pQuit);
-            Time.timeScale = 0;
-            
-        }
-        else
-        {
-            resume.onClick.RemoveAllListeners();
-            RemoveQuitListener(pQuit);
-            pauseMenu.SetActive(false);
-            Time.timeScale = 1;
-        }
-        
-    }
-
-    void SetRetryButton(Button retry)
-    {
-        retry.onClick.AddListener(levelLoader.LoadLevel1);
-    }
-
-    void SetQuitButton(Button quit)
-    {
-        //quit.onClick.AddListener(levelLoader.LoadMainMenu); //TODO re-enable after debugging
-    }
-    void RemoveQuitListener(Button quit)
-    {
-        quit.onClick.RemoveAllListeners();
-    }
     public void ActivateChoices(bool activate)
     {
         choices.SetActive(activate);
-    }
-
-    public Button GetButton(int index)
-    {
-        Button[] buttons = {resume, pQuit, treat, stopButton};
-        return buttons[index];
     }
 
     public GameObject GetKit()
@@ -168,7 +100,6 @@ public class LevelSystem : MonoBehaviour
 
     public void AddASquads(GameObject newSquad)
     {   
-        
         squads.Add(newSquad);
     }
     public List<GameObject> GetSquads()

@@ -12,6 +12,30 @@ public class TimerLogic : MonoBehaviour
     [SerializeField] float setTime;
     float pausedTime;
     
+    private void Start()
+    {
+        SetTimePerDifficulty();
+    }
+
+    private void SetTimePerDifficulty()
+    {
+        if (DifficultyPrefs.difficulty == DifficultyPrefs.Difficulies.Easy)
+        {
+            setTime = 60;
+        }
+        else if (DifficultyPrefs.difficulty == DifficultyPrefs.Difficulies.Normal)
+        {
+            setTime = 90;
+        }
+        else if (DifficultyPrefs.difficulty == DifficultyPrefs.Difficulies.Hard)
+        {
+            setTime = 180;
+        }
+        else
+        {
+            setTime = 360;
+        }
+    }
 
     // Update is called once per frame
     void Update()

@@ -8,45 +8,67 @@ public class Soldier : MonoBehaviour //Should have named it Injured
     Player player;
     [SerializeField] GameObject ambulance;
     LevelSystem levelSystem;
+    InjuredSystem injuredSystem;
+    [SerializeField] ConditionsLogic conditionsLogic;
     
     //Injuries
     [SerializeField] Sprite[] injuries; //Sprites of injuries
     Sprite currentInjury;
-    Color[] conditionsStatus; // Has the condition (black) : else (white)
     [SerializeField] Sprite deadSoldier; //Sprite when the soldier dies
     float health, currentHealth;
     bool isAlive;
     bool isTreated;
     
     //Ambulance
-    Vector2 ambulanceSpawnLocation;
+    Vector2 ambulanceSpawnLocation; //TODO add another spawning location
     Vector2 ambulanceParkingLocation;
     GameObject currentAmbulance;
     
     //Medics
     [SerializeField] AIMedic aiMedic;
     Vector2 aiSpawnLocation;
+
+    //Sounds
+    [SerializeField] AudioClip dying;
     
     void Start()
     {
         //Default conditions
         isAlive = true;
-        health = 100;
+        SetHealthPerDifficult();
+
 
         //Get references to scripts
         player = FindObjectOfType<Player>();
         levelSystem = FindObjectOfType<LevelSystem>();
+        injuredSystem = FindObjectOfType<InjuredSystem>();
 
         //Set amount of soldiers
-        levelSystem.SetAmountOfInjured(isAlive);
+        injuredSystem.SetAmountOfInjured(isAlive);
 
         //Set conditions and designated ambulance - TODO check OneNote
         SetInjury();
         SetRescueTeam();
-
     }
 
-    void Update()
+    private void SetHealthPerDifficult()
+    {
+        if (DifficultyPrefs.GetDifficuly() == DifficultyPrefs.Difficulies.Easy)
+        {
+            health = 300;
+        }
+        else if (DifficultyPrefs.GetDifficuly() == DifficultyPrefs.Difficulies.Normal)
+        {
+            health = 200;
+        }
+        else
+        {
+            health = 100;
+        }
+    }
+
+    //Decreases injured health
+    void Update() 
     {
             currentHealth = health;
             if(health > 0 && !isTreated)
@@ -59,20 +81,17 @@ public class Soldier : MonoBehaviour //Should have named it Injured
             }
     }
 
-    void StopHealth()
-    {
-        health = currentHealth;
-    }
-
     public void SetSoldierAsDead()
     {
         isAlive = false;
         Destroy(transform.GetChild(0).gameObject); // Remove the conditions panel
         GetComponent<Animator>().enabled = false; //No death animation
         GetComponent<SpriteRenderer>().sprite = deadSoldier;
-        levelSystem.SetAmountOfInjured(isAlive);
+        injuredSystem.SetAmountOfInjured(isAlive); //decrease the amout of injured
+        GetComponent<AudioSource>().PlayOneShot(dying);
     }
 
+    //Every soldier has a dedicated rescue team
     private void SetRescueTeam()
     {
         ambulanceSpawnLocation = new Vector2(-11, -6.8f);
@@ -92,64 +111,21 @@ public class Soldier : MonoBehaviour //Should have named it Injured
 
     void SetInjury()
     {
-        currentInjury = injuries[Random.Range(0, 2)];
-        conditionsStatus = new Color[] { Color.black, Color.white };
-        GameObject conditions = gameObject.transform.GetChild(0).gameObject;
-        
-        conditions.SetActive(true);
-
-        for (int index = 0; index < 4; index++)
+        if(DifficultyPrefs.GetDifficuly() == DifficultyPrefs.Difficulies.Easy)
         {
-            if (index == 0)
-            {
-                RandomizeConditionStatus(conditions, index);
-            }
-            else if (conditions.transform.GetChild(index - 1).GetComponent<SpriteRenderer>().color == Color.black)
-            {
-                if (index == 4)
-                {
-                    if ( conditions.transform.GetChild(1).GetComponent<SpriteRenderer>().color == Color.white)
-                    {
-                        RandomizeConditionStatus(conditions, index);
-                    }
-                }
-                else
-                {
-                    conditions.transform.GetChild(index).GetComponent<SpriteRenderer>().color = Color.black;
-                }
-            }
-            else
-            {
-                RandomizeConditionStatus(conditions, index);
-            }
+            currentInjury = injuries[Random.Range(0, 2)];
         }
-        SetHealth(conditions);
-    }
-    
-    private void SetHealth(GameObject conditions)
-    {
-        Color heart = conditions.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color;
-        Color lungs = conditions.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().color;
-        Color brian = conditions.transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>().color;
-        Color bp = conditions.transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().color;
-
-        if (heart == Color.black)
+        else
         {
-            health = 40;
+            currentInjury = injuries[Random.Range(0,4)];
         }
-        else if (lungs == Color.black)
-        {
-            health = 65;
-        }
-        else if (brian == Color.black || bp == Color.black)
-        {
-            health = 85;
-        }
+        ConditionsLogic attachedCoditions =  Instantiate(conditionsLogic,transform.position + new Vector3(-0.1f,0.5f),transform.rotation) as ConditionsLogic;
+        attachedCoditions.transform.parent = transform;
     }
 
-    private void RandomizeConditionStatus(GameObject conditions, int index)
+    public void SetSoldierHealth(int healthToSet)
     {
-        conditions.transform.GetChild(index).GetComponent<SpriteRenderer>().color = conditionsStatus[Random.Range(0, 2)];
+        health = healthToSet;
     }
 
     public Sprite GetInjury()
@@ -160,7 +136,7 @@ public class Soldier : MonoBehaviour //Should have named it Injured
     public void Evacuate()
     {
         isTreated = true;
-        levelSystem.SetAmountOfInjured(!isAlive);
+        injuredSystem.SetAmountOfInjured(!isAlive);
         GameObject thisAmbulance =  Instantiate(ambulance, ambulanceSpawnLocation, Quaternion.identity) as GameObject;
         levelSystem.AddAmbulance(thisAmbulance);
         currentAmbulance = levelSystem.GetAmbulances()[levelSystem.GetAmbulances().LastIndexOf(thisAmbulance)];

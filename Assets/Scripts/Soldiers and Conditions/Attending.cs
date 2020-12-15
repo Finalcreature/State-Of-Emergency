@@ -8,11 +8,10 @@ public class Attending : MonoBehaviour
     //References
     [SerializeField] GameObject analyzePanel;
     Soldier currentSoldier;
+    ButtonsHandler buttonsHandler;
     LevelSystem levelSystem;
     Player player;
-    bool tourniquet, bondage;
-    bool[] Tools;
-    
+
     //phase
     bool treating;
 
@@ -20,7 +19,7 @@ public class Attending : MonoBehaviour
     {
         player = FindObjectOfType<Player>();
         levelSystem = FindObjectOfType<LevelSystem>();
-        Tools = new bool[] {tourniquet, bondage};
+        buttonsHandler = FindObjectOfType<ButtonsHandler>();
     }
     public void Analyze()
     {
@@ -34,7 +33,7 @@ public class Attending : MonoBehaviour
             }
         }
         analyzePanel.SetActive(true);
-        levelSystem.GetButton(2).interactable = true;
+        buttonsHandler.GetTreatOrPause(true).interactable = true; //Enable treat button
         SetTreating(true);
         analyzePanel.GetComponent<Image>().sprite =  currentSoldier.GetInjury();
     }
@@ -47,25 +46,11 @@ public class Attending : MonoBehaviour
         }       
     }
 
-    public void Tourniquet()
+    public void CheckTool(string treatingTool)
     {
-        Tools[0] = true;
-        CheckTool();
-        Tools[0] = !Tools[0];
-    }
-        public void Bondage()
-    {
-        Tools[1] = true;
-        CheckTool();
-        Tools[1] = !Tools[1];
-    }
-
-    void CheckTool()
-    {
-        if(currentSoldier.GetInjury().name == "Heart" && Tools[0] ||
-           currentSoldier.GetInjury().name == "Broken Bone" && Tools[1])
+        if(treatingTool == currentSoldier.GetInjury().name)
         {
-            currentSoldier.Evacuate();        
+            currentSoldier.Evacuate();
             levelSystem.SetEvacuatedAmount();
         }
         else
@@ -80,7 +65,7 @@ public class Attending : MonoBehaviour
         SetTreating(false);
         player.ZoomOut();
         analyzePanel.SetActive(false);  
-        levelSystem.GetButton(2).interactable = false;
+        buttonsHandler.GetTreatOrPause(true).interactable = false; 
         foreach(Transform child in levelSystem.GetKit().transform)
 	    { 
 		    child.gameObject.SetActive(false);

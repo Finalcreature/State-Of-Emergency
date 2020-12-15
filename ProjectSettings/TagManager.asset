@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ambulance
   - Squad
+  - Difficulty
   layers:
   - Default
   - TransparentFX
