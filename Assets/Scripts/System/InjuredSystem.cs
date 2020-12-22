@@ -9,7 +9,7 @@ public class InjuredSystem : MonoBehaviour
     int numberOfInjured;
     [SerializeField] Soldier soldier;
     Vector2[] soldiersLocations;
-    // Start is called before the first frame update
+   
     void Start()
     {
         SpawnInjured();
@@ -19,7 +19,7 @@ public class InjuredSystem : MonoBehaviour
     private void SpawnInjured()
     {
         SetAmountOfInjuredToSpawn();
-        soldiersLocations = new Vector2[injuredToSpawn];
+        soldiersLocations = new Vector2[injuredToSpawn]; //TODO bonus - check if a location was already used and change it accordingly
         for (int i = 0; i < soldiersLocations.Length; i++)
         {
             Vector2 spawnLocation = new Vector2(Random.Range(-9, 9), Random.Range(-6, 6));
@@ -30,7 +30,6 @@ public class InjuredSystem : MonoBehaviour
 
     private void SetAmountOfInjuredToSpawn()
     {
-        Debug.Log(DifficultyPrefs.GetDifficuly());
         if(DifficultyPrefs.GetDifficuly() == DifficultyPrefs.Difficulies.Easy)
         {
             injuredToSpawn = 6;

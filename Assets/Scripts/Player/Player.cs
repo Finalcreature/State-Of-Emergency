@@ -63,7 +63,7 @@ float camStartZoom, zoomTarget;
     {
         while (isMoving)
         {
-            yield return isMoving;
+            yield return null;
             transform.position = Vector3.MoveTowards(transform.position, soliderPosition, Time.deltaTime);
 
             if (soliderPosition.y >= transform.position.y)
@@ -78,7 +78,6 @@ float camStartZoom, zoomTarget;
             if (transform.position.x == soliderPosition.x && transform.position.y == soliderPosition.y)
             {
                 TreatingPhase();
-
             }
 
         }
@@ -129,9 +128,9 @@ float camStartZoom, zoomTarget;
 
     IEnumerator ZoomingOut()
     {
-        while( !attending.isTreating() &&  Camera.main.orthographicSize < camStartZoom - 0.2f)
+        while( !attending.isTreating() &&  Camera.main.orthographicSize < camStartZoom - 0.2f) // The camera never returns to it's starting pos hence the -0.2f
         {
-            yield return  Camera.main.orthographicSize < camStartZoom;
+            yield return  null;
             gameCam.orthographicSize = Mathf.Lerp(gameCam.orthographicSize, camStartZoom, Time.deltaTime * 2); 
             gameCam.transform.position = Vector3.Lerp(gameCam.transform.position, camStartPos, Time.deltaTime * 2);
             buttonsHandler.GetTreatOrPause(false).gameObject.SetActive(true); // Set the stop button to true - player can pause now if desire

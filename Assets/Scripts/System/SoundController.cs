@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.UI;
 
 public class SoundController : MonoBehaviour
 {
-    //Refernces
+    //Refernce
     [SerializeField] AudioMixer audioMixer;
-    [SerializeField] Slider volumeSlider;
 
     private void Awake() 
     {
@@ -24,6 +22,6 @@ public class SoundController : MonoBehaviour
     
     public void SetSound(float volume)
     {
-        audioMixer.SetFloat("masterVolume", volume);
+        audioMixer.SetFloat("masterVolume", volume); //set the volume = Used by the Audio Mixer
     }
 }

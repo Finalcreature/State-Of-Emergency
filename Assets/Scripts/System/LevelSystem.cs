@@ -8,20 +8,23 @@ public class LevelSystem : MonoBehaviour
 {
     [Header("Objective")]
     [SerializeField] TextMeshProUGUI obejctive;
-    [SerializeField] int evacuations;
-    int evacuated;
+    [SerializeField] int evacuations; // How many need to evactuate
+    int evacuated; // How many were evacuated during the session
 
     [Header("System")]
     LevelLoader levelLoader;
-    AIMedic[] medicsOnField;
-    List<GameObject> squads = new List<GameObject>();
-    List<GameObject> ambulances = new List<GameObject>();
+    AIMedic[] medicsOnField; // Count the medics on the field
+    List<GameObject> squads = new List<GameObject>(); // A list of medics squad
+    List<GameObject> ambulances = new List<GameObject>(); // A list of ambulances on the field
 
     [Header("End Game Screens")]
     [SerializeField] GameObject endScreen;
     [SerializeField] Text endTitle;
     [SerializeField] Text statistics;
-    [SerializeField] Button[] endScreenButtons; //{nextLevel, retry, quit}
+    [Header("")]
+    [SerializeField] Button nextLevel;
+    [SerializeField] Button retry;
+    [SerializeField] Button quit;
 
     [Header("Choices")]
     [SerializeField] GameObject choices;
@@ -36,21 +39,41 @@ public class LevelSystem : MonoBehaviour
         levelLoader = FindObjectOfType<LevelLoader>();
         timerLogic = FindObjectOfType<TimerLogic>();
 
+        //Set difficulty
+        SetDifficultyAttributes();
+
         // Set default settings
-        Time.timeScale = 1;
+        Time.timeScale = 1; // Make sure the game runs at a normal pace
         evacuated = 0;
         obejctive.text = "Evacuated: " + evacuated + "/" + evacuations;
 
-        //Set difficulty
-        if(DifficultyPrefs.difficulty == DifficultyPrefs.Difficulies.Easy)
+        //Subscribtions
+        timerLogic.OnEndTime += EndGame;
+
+    }
+
+    private void SetDifficultyAttributes()
+    {
+        if (DifficultyPrefs.difficulty == DifficultyPrefs.Difficulies.Easy)
         {
+            //Remove additional tools
             Destroy(medicalKit.transform.GetChild(2).gameObject);
             Destroy(medicalKit.transform.GetChild(3).gameObject);
+
+            evacuations = 2;
         }
-        
-        //Subscribtions
-        timerLogic.OnEndTime += EndGame; 
-        
+        else if (DifficultyPrefs.difficulty == DifficultyPrefs.Difficulies.Normal)
+        {
+            evacuations = 8;
+        }
+        else if (DifficultyPrefs.difficulty == DifficultyPrefs.Difficulies.Hard)
+        {
+            evacuations = 15;
+        }
+        else
+        {
+            evacuations = 20;
+        }
     }
 
     private void EndGame(object sender, EventArgs e)
@@ -59,37 +82,31 @@ public class LevelSystem : MonoBehaviour
         
         endScreen.SetActive(true);
         statistics.text = "Evacuated " + evacuated + " out of " + evacuations + " injured";
-        endScreenButtons[2].onClick.AddListener(levelLoader.LoadMainMenu);
+        quit.onClick.AddListener(levelLoader.LoadMainMenu);
         if (evacuated >= evacuations)
         {
-            endScreenButtons[1].gameObject.SetActive(false);
-            endScreenButtons[0].onClick.AddListener(levelLoader.LoadNextLevel);
-            Debug.Log(endScreenButtons[0].name);
+            retry.gameObject.SetActive(false);
+            nextLevel.onClick.AddListener(levelLoader.LoadNextLevel);
             endTitle.text = "Success";
             endTitle.color = Color.green;
         }
         else
         {
-            endScreenButtons[1].onClick.AddListener(levelLoader.LoadLevel1);
-            endTitle.text = "fail";
+            retry.onClick.AddListener(levelLoader.LoadLevel1);
+            endTitle.text = "Fail";
         }
-        Time.timeScale = 0;
+        Time.timeScale = 0; // Stop the game
     }
 
-    public void SetEvacuatedAmount()
+    public void SetEvacuatedAmount() //called from Attending when the treatment was successful
     {
             evacuated++;
             obejctive.text = "Evacuated: " + evacuated + "/" + evacuations;
     }
 
-    public void ActivateChoices(bool activate)
+    public void ActivateChoices(bool activate) // true when reaching an injured soldier : false when finishing the treatment phase
     {
         choices.SetActive(activate);
-    }
-
-    public GameObject GetKit()
-    {
-        return medicalKit;
     }
 
     public AIMedic[] GetAllMedics()

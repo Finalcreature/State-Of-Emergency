@@ -2911,7 +2911,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Emergency medical technician\nLonger time\r\n\uF0A7Moderate number of
-    new injured\n\uF0A7 All injuries scenarios\r\nAll tools\r\n\uF0A7Moderate amount
+    new injured\n\uF0A7All injuries scenarios\r\nAll tools\r\n\uF0A7Moderate amount
     of injured to evacuate\nLess health to injured\n\n\n"
 --- !u!222 &2143502826
 CanvasRenderer:

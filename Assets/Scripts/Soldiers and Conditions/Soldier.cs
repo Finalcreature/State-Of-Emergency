@@ -6,10 +6,10 @@ public class Soldier : MonoBehaviour //Should have named it Injured
 {
     //References
     Player player;
-    [SerializeField] GameObject ambulance;
     LevelSystem levelSystem;
     InjuredSystem injuredSystem;
     [SerializeField] ConditionsLogic conditionsLogic;
+    [SerializeField] GameObject ambulance;
     
     //Injuries
     [SerializeField] Sprite[] injuries; //Sprites of injuries
@@ -20,7 +20,7 @@ public class Soldier : MonoBehaviour //Should have named it Injured
     bool isTreated;
     
     //Ambulance
-    Vector2 ambulanceSpawnLocation; //TODO add another spawning location
+    Vector2 ambulanceSpawnLocation;
     Vector2 ambulanceParkingLocation;
     GameObject currentAmbulance;
     
@@ -44,9 +44,9 @@ public class Soldier : MonoBehaviour //Should have named it Injured
         injuredSystem = FindObjectOfType<InjuredSystem>();
 
         //Set amount of soldiers
-        injuredSystem.SetAmountOfInjured(isAlive);
+        injuredSystem.SetAmountOfInjured(isAlive); // Each soldier send his own living condition to the InjuredSystem count
 
-        //Set conditions and designated ambulance - TODO check OneNote
+        //Set conditions and designated ambulance
         SetInjury();
         SetRescueTeam();
     }
@@ -99,11 +99,13 @@ public class Soldier : MonoBehaviour //Should have named it Injured
         aiSpawnLocation = ambulanceParkingLocation - new Vector2(1, 0);
     }
 
+    // The point when the primary game loop begins
     private void OnMouseDown()
     {
         {
             if(!player.IsMoving() && isAlive && Time.timeScale != 0)
             {
+                isTreated = true;
                 player.MovePlayer(transform.position);
             }
         }
@@ -135,7 +137,6 @@ public class Soldier : MonoBehaviour //Should have named it Injured
 
     public void Evacuate()
     {
-        isTreated = true;
         injuredSystem.SetAmountOfInjured(!isAlive);
         GameObject thisAmbulance =  Instantiate(ambulance, ambulanceSpawnLocation, Quaternion.identity) as GameObject;
         levelSystem.AddAmbulance(thisAmbulance);

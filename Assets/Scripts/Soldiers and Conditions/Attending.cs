@@ -11,6 +11,8 @@ public class Attending : MonoBehaviour
     ButtonsHandler buttonsHandler;
     LevelSystem levelSystem;
     Player player;
+    [SerializeField]Sprite openKit,closeKit;
+    [SerializeField] Image kitSR;
 
     //phase
     bool treating;
@@ -20,6 +22,7 @@ public class Attending : MonoBehaviour
         player = FindObjectOfType<Player>();
         levelSystem = FindObjectOfType<LevelSystem>();
         buttonsHandler = FindObjectOfType<ButtonsHandler>();
+        kitSR.sprite = closeKit;
     }
     public void Analyze()
     {
@@ -39,8 +42,9 @@ public class Attending : MonoBehaviour
     }
 
     public void Treat()
-    {   	
-	    foreach(Transform child in levelSystem.GetKit().transform)
+    {
+        kitSR.sprite = openKit;   	
+	    foreach(Transform child in kitSR.transform)
 	    { 
 		    child.gameObject.SetActive(true);
         }       
@@ -66,7 +70,8 @@ public class Attending : MonoBehaviour
         player.ZoomOut();
         analyzePanel.SetActive(false);  
         buttonsHandler.GetTreatOrPause(true).interactable = false; 
-        foreach(Transform child in levelSystem.GetKit().transform)
+        kitSR.sprite = closeKit;
+        foreach(Transform child in kitSR.transform)
 	    { 
 		    child.gameObject.SetActive(false);
         }

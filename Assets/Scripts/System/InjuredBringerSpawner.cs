@@ -6,7 +6,7 @@ public class InjuredBringerSpawner : MonoBehaviour
 {
     InjuredSystem injuredSystem;
     [SerializeField] InjuredBringer InjuredBringer;
-    [SerializeField] float timeToSpawn, minTime, maxTime; //TODO set numbers per difficulty
+    [SerializeField] float timeToSpawn, minTime, maxTime; // Set how frequently an injured bringer can spawn
     int maxAmountOfInjuredOnField;
     Vector2[] spawnLocations;
     
@@ -50,7 +50,6 @@ public class InjuredBringerSpawner : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(timeToSpawn >=0)

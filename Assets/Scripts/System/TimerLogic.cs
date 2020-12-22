@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System;
+using System; //Need for EventHandler
 public class TimerLogic : MonoBehaviour
 {
-    public event EventHandler OnEndTime;  
+    public event EventHandler OnEndTime;  //Send a callback when the timer == zero
 
     [Header("Timer")]
     [SerializeField] TextMeshProUGUI timer;
     [SerializeField] float setTime;
-    float pausedTime;
     
     private void Start()
     {
@@ -37,24 +36,17 @@ public class TimerLogic : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-         if(setTime >= 0)
+        if(setTime >= 0)
         {
-            pausedTime = setTime; // Assignment has to be here, otherwise the time will keep on decreasing
             setTime -= Time.deltaTime;
-            timer.text = setTime.ToString("F0");   
+            timer.text = setTime.ToString("F0");  //Let me print the float without the decimals
         }
         else
         {
-             OnEndTime?.Invoke(this, EventArgs.Empty);
+             OnEndTime?.Invoke(this, EventArgs.Empty); //?.Invoke - check if there are any subscribers
         }
-    }
-
-    void StopTimer()
-    {   
-        setTime = pausedTime;
     }
 
   

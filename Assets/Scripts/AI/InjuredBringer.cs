@@ -9,7 +9,6 @@ public class InjuredBringer : MonoBehaviour
     bool reached, dropped;
     float startPos;
     int xDrop;
-    int yDrop;
    
     // Start is called before the first frame update
     void Start()

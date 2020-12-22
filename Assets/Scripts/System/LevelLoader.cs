@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,14 +15,15 @@ public class LevelLoader : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
         }
+        Screen.SetResolution(1440,1920,true);
     }
-
+        
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
-         {
+        {
             LoadMainMenu();
-         }
+        }
     }
 
     public void QuiteGame()

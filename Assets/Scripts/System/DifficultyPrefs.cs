@@ -26,7 +26,7 @@ public class DifficultyPrefs : MonoBehaviour
         {
             difficulty = Difficulies.Expert;
         }
-        FindObjectOfType<OptionsHandler>().SetText(chosendifficulty);
+        FindObjectOfType<OptionsHandler>().SetDifficultyText(chosendifficulty);
     }
 
     public static Difficulies GetDifficuly()

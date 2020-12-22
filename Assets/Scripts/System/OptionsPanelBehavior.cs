@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public class OptionsPanelBehavior : MonoBehaviour
 {
-    Color colorAlpha;
-    Transform panelChildrens;
-    // Start is called before the first frame update
+
+    //Options fade in effect
+    Color colorAlpha; //Let me control the alpha of the component
+    
     void Start()
     {
         colorAlpha = GetComponent<Image>().color;
@@ -22,12 +23,11 @@ public class OptionsPanelBehavior : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(colorAlpha.a < 1)
         {
-            colorAlpha.a += 0.01f;
+            colorAlpha.a += 0.01f; //Gradually increase opacity of panel
             GetComponent<Image>().color = colorAlpha;
         }
         else

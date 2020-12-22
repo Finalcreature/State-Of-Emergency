@@ -1,16 +1,21 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor;
 
 public class ButtonsHandler : MonoBehaviour
 {
+    // The end game screen buttons stayed in the LevelSystem script for convinience
+
     [Header("Main Menu")]
     
     [SerializeField] Button startButton;
     [SerializeField] Button optionsButton;
     [SerializeField] Button menuQuitButton;
+    [SerializeField] Button menuBriefButton;
+    [SerializeField] GameObject breifing;
+    [SerializeField] Button briefNextButton;
+    int panelIndex;
 
     [Header("Pause Menu")]
     [SerializeField] GameObject pauseMenu;
@@ -33,6 +38,8 @@ public class ButtonsHandler : MonoBehaviour
             startButton.onClick.AddListener(levelLoader.LoadLevel1);
             optionsButton.onClick.AddListener(levelLoader.LoadOptions);
             menuQuitButton.onClick.AddListener(levelLoader.QuiteGame);
+            menuBriefButton.onClick.AddListener(this.ShowBrief);
+            briefNextButton.onClick.AddListener(this.NextPanel);
         }
         else if(levelLoader.ActiveScene() == "Options Screen")
         {
@@ -42,6 +49,7 @@ public class ButtonsHandler : MonoBehaviour
         {
             stopButton.onClick.AddListener(this.ShowMenu);
         }
+        panelIndex = 0;
        
     }
 
@@ -74,4 +82,39 @@ public class ButtonsHandler : MonoBehaviour
             return stopButton;
         }
     }
+
+    public void ShowBrief()
+    {      
+        breifing.gameObject.SetActive(true);
+        breifing.transform.GetChild(panelIndex).gameObject.SetActive(true);
+        panelIndex++;
+     }
+
+    // Itirate through the different panels of the briefing
+     public void NextPanel()
+     {
+        for(int index = 0; index < breifing.transform.childCount-1; index++)
+        {
+            if(panelIndex == 3)
+            {
+                breifing.gameObject.SetActive(false);
+                breifing.transform.GetChild(index).gameObject.SetActive(false);
+                panelIndex = -1; // Because the panelIndex is incremented all the time I needed to get -1 so it's basically 0
+            }
+            else
+            {
+            if(index == panelIndex)
+            {
+                breifing.transform.GetChild(index).gameObject.SetActive(true);
+               
+            }
+            else
+            {
+                breifing.transform.GetChild(index).gameObject.SetActive(false);
+            }
+            }
+        }
+             panelIndex++;
+     }
 }
+
