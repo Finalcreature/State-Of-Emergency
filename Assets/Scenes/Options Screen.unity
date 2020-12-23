@@ -309,8 +309,8 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Advance emergency medical technician\nExtended time\r\nlarge amount of 
-    new injured\r\n\uF0A7All injuries\nAll tools\n\uF0A7Large amount of of injured
-    to evacuate\r\nEven less health to injured\n\n\n\n"
+    new injured\r\n\uF0A7All injuries\nAll tools\n\uF0A7Large amount of injured to
+    evacuate\r\nEven less health to injured\n\n\n\n"
 --- !u!222 &214602607
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -623,7 +623,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Emergency medical responder\n\uF0A7Short time\r\nfewer  new injured are
+  m_Text: "Emergency medical responder\n\uF0A7Short time\r\nFewer new injured are
     brought to the scene\r\n\uF0A7Fewer possible injuries\nFewer tools\n\uF0A7Low
     amount of of injured to evacuate\r\nMore health to injured\n\n\n\n"
 --- !u!222 &433410499

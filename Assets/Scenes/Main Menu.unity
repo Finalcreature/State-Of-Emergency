@@ -395,7 +395,7 @@ GameObject:
   - component: {fileID: 393110012}
   - component: {fileID: 393110011}
   m_Layer: 5
-  m_Name: Conditions Image (1)
+  m_Name: Tools chart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
